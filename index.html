@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative Lifestyle Path | Economía Creativa</title>
+<style>body{margin:0;background:#f4f3ed;padding:20px}.top{max-width:820px;margin:0 auto 10px;font:14px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#285b4c}.top a{color:#285b4c}.foot{max-width:820px;margin:20px auto;font:14px system-ui,sans-serif}.foot a{color:#285b4c}@media print{.top,.foot{display:none}}</style></head><body>
+<div class="top">Economía Creativa · Creative Lifestyle</div>
+<div id="clp" lang="en">
+<style>
+#clp{max-width:820px;margin:auto;font:17px/1.6 system-ui,sans-serif;color:#253c35}
+#clp section{background:#fff;border:1px solid #d5ddd5;border-radius:12px;padding:20px;margin:16px 0}
+#clp h2,#clp h3{line-height:1.3;margin:0 0 10px}
+#clp label{display:block;margin:10px 0}
+#clp input[type=text],#clp input[type=date],#clp textarea,#clp select{width:100%;font:inherit;padding:9px;border:1px solid #81958a;border-radius:5px;margin:4px 0 12px;box-sizing:border-box}
+#clp input[type=checkbox]{width:20px;height:20px;vertical-align:middle;margin-right:10px}
+#clp button{background:#285b4c;color:#fff;border:0;border-radius:6px;padding:11px 16px;font:inherit;cursor:pointer;margin:6px 8px 6px 0}
+#clp button.alt{background:#e1e9e2;color:#19392e}
+#clp button:focus-visible,#clp input:focus-visible,#clp select:focus-visible,#clp textarea:focus-visible{outline:3px solid #bd591f;outline-offset:2px}
+#clp .muted{font-size:.88rem;color:#4d6057}
+#clp .err{color:#a21b1b;min-height:1.4em}
+#clp progress{width:100%;accent-color:#285b4c}
+#clp fieldset{border:1px solid #d5ddd5;border-radius:8px;margin:12px 0}
+@media print{#clp .noprint{display:none}}
+</style>
+<div class="noprint"><label for="clp-lang">Language / Idioma</label>
+<select id="clp-lang"><option value="en">English</option><option value="es">Español</option></select></div>
+<h2 id="clp-title"></h2><p id="clp-intro"></p><p id="clp-note" class="muted"></p>
+<div id="clp-err" class="err" role="status" aria-live="polite"></div>
+<div id="clp-app"></div>
+<p id="clp-priv" class="muted"></p>
+<script>
+(function(){
+const D=[
+["Attention","Atención",["Spend five minutes noticing light, texture or sound.","Look closely at one familiar object."],["Dedica cinco minutos a observar luz, textura o sonido.","Observa con detenimiento un objeto cotidiano."]],
+["Time and space","Tiempo y espacio",["Protect a small period with no demands, if possible.","Leave a little space between two commitments."],["Protege un pequeño intervalo sin obligaciones, si puedes.","Deja un pequeño espacio entre dos compromisos."]],
+["Nature and place","Naturaleza y lugar",["Observe nature from a window, doorstep or accessible outdoor space.","Explore a familiar place at a comfortable pace."],["Observa la naturaleza desde una ventana o un espacio accesible.","Explora un lugar conocido a un ritmo cómodo."]],
+["Rest and quiet","Descanso y calma",["Try a few quiet minutes without a task.","Choose a restful activity that suits your sensory needs."],["Prueba unos minutos de calma sin tareas.","Elige una actividad reparadora adecuada a tus necesidades sensoriales."]],
+["Everyday rituals","Rituales cotidianos",["Make a familiar daily activity more intentional.","Mark the end of work with a small ritual."],["Realiza con más intención una actividad cotidiana.","Marca el final del trabajo con un pequeño ritual."]],
+["Making and play","Crear y jugar",["Play with words, sounds, materials or images.","Make something without needing to finish or share it."],["Juega con palabras, sonidos, materiales o imágenes.","Crea algo sin necesidad de terminarlo ni compartirlo."]],
+["Digital boundaries","Límites digitales",["Choose one short notification-free period.","Keep useful technology; remove one avoidable interruption."],["Elige un breve intervalo sin notificaciones.","Conserva la tecnología útil y elimina una interrupción evitable."]],
+["Culture and connection","Cultura y conexión",["Enjoy a song, story, artwork or cultural experience.","Share an attentive conversation in a format that suits you."],["Disfruta de una canción, relato, obra o experiencia cultural.","Comparte una conversación atenta en un formato adecuado para ti."]],
+["Care and continuity","Cuidado y continuidad",["Care for something you already have.","Choose one small practice you can sustain without pressure."],["Cuida algo que ya tienes.","Elige una pequeña práctica que puedas mantener sin presión."]]
+];
+const T={
+en:{title:"Your Creative Lifestyle Path",intro:"Make room for attention, curiosity and meaningful experience. Choose a small, flexible experiment, not another productivity target.",note:"An exploratory tool inspired by Economía Creativa's Creative Lifestyle project, curated by Justyna Molendowska-Ruiz. These nine themes are a proposal, not the official 12 Steps framework or a validated assessment. There are no right scores.",priv:"Your entries stay in this page's memory. Nothing is submitted or saved automatically. Download your path before leaving.",one:"1. Notice your starting point",scale:"How much room does each theme have in your life right now? 1 = very little; 5 = plenty. You can skip any rating.",skip:"Not rated",name:"Name or nickname (optional)",two:"2. Choose your focus",choose:"Choose one to three themes that matter to you.",three:"3. Shape your experiment",prac:"Select practices, adapt them, or write your own. No purchase, outdoor activity or disconnection is required.",own:"My own practice or adaptation",rhythm:"My rhythm (e.g. once this week, when possible)",support:"What support, access or change would help?",four:"4. Give it space",notice:"What would I like to notice more?",min:"What is the smallest version that would still feel worthwhile?",rev:"When would I like to revisit this? (optional)",gen:"Create my path",back:"Back",next:"Continue",ferr:"Please select one to three themes.",res:"My Creative Lifestyle Path",edit:"Edit my path",txt:"Download text",print:"Print / save PDF",none:"No practice selected yet. Leave room to explore.",rating:"Starting reflection",unr:"Not rated",sup:"Support / access",close:"What might I notice if I gave myself space to pay attention?",nl:"I want to notice",ml:"My smallest worthwhile version",rl:"Revisit"},
+es:{title:"Tu camino de Estilo de Vida Creativo",intro:"Abre espacio a la atención, la curiosidad y las experiencias con sentido. Elige un pequeño experimento flexible, no otro objetivo de productividad.",note:"Una herramienta exploratoria inspirada en el proyecto Creative Lifestyle de Economía Creativa, curado por Justyna Molendowska-Ruiz. Estos nueve temas son una propuesta, no el marco oficial de 12 pasos ni una evaluación validada. No hay puntuaciones correctas.",priv:"Tus respuestas permanecen en la memoria de esta página. No se envían ni se guardan automáticamente. Descarga tu camino antes de salir.",one:"1. Observa tu punto de partida",scale:"¿Cuánto espacio tiene cada tema en tu vida ahora? 1 = muy poco; 5 = mucho. Puedes omitir cualquier valoración.",skip:"Sin valorar",name:"Nombre o seudónimo (opcional)",two:"2. Elige tu foco",choose:"Elige de uno a tres temas que te importen.",three:"3. Diseña tu experimento",prac:"Selecciona prácticas, adáptalas o escribe las tuyas. No hace falta comprar, salir al aire libre ni desconectarte.",own:"Mi práctica o adaptación",rhythm:"Mi ritmo (p. ej. una vez esta semana, cuando pueda)",support:"¿Qué apoyo, acceso o cambio me ayudaría?",four:"4. Dale espacio",notice:"¿Qué me gustaría notar más?",min:"¿Cuál sería la versión más pequeña que seguiría teniendo sentido?",rev:"¿Cuándo me gustaría revisarlo? (opcional)",gen:"Crear mi camino",back:"Atrás",next:"Continuar",ferr:"Selecciona de uno a tres temas.",res:"Mi camino de Estilo de Vida Creativo",edit:"Editar mi camino",txt:"Descargar texto",print:"Imprimir / guardar PDF",none:"Aún no has elegido una práctica. Deja espacio para explorar.",rating:"Reflexión inicial",unr:"Sin valorar",sup:"Apoyo / acceso",close:"¿Qué podría notar si me diera espacio para prestar atención?",nl:"Quiero notar",ml:"Mi versión mínima con sentido",rl:"Revisar"}
+};
+let L="en",step=1,s={name:"",sc:D.map(()=>""),focus:[],ch:{},own:{},rh:{},sup:{},notice:"",min:"",rev:""};
+const $=id=>document.getElementById(id),t=k=>T[L][k],ti=i=>D[i][L==="en"?0:1],pr=i=>D[i][L==="en"?2:3];
+function el(tag,txt,cls){const n=document.createElement(tag);if(txt!==undefined)n.textContent=txt;if(cls)n.className=cls;return n}
+function btn(txt,fn,alt){const b=el("button",txt,alt?"alt":"");b.type="button";b.onclick=fn;return b}
+let uid=0;
+function field(p,label,val,fn,area,type){const id="clp-f"+(uid++);const l=el("label",label);l.htmlFor=id;const n=document.createElement(area?"textarea":"input");if(!area)n.type=type||"text";else n.rows=3;n.id=id;n.value=val||"";n.oninput=()=>fn(n.value);p.append(l,n)}
+function check(p,label,on,fn){const l=el("label"),n=document.createElement("input");n.type="checkbox";n.checked=on;n.onchange=()=>fn(n.checked);l.append(n,document.createTextNode(label));p.append(l)}
+function summary(){const a=[t("res"),s.name,""];s.focus.forEach(i=>{a.push(ti(i)+" - "+t("rating")+": "+(s.sc[i]?s.sc[i]+"/5":t("unr")));let p=(s.ch[i]||[]).map(j=>pr(i)[j]);if(s.own[i])p.push(s.own[i]);(p.length?p:[t("none")]).forEach(x=>a.push("• "+x));if(s.rh[i])a.push(t("rhythm")+": "+s.rh[i]);if(s.sup[i])a.push(t("sup")+": "+s.sup[i]);a.push("")});a.push(t("nl")+": "+s.notice,t("ml")+": "+s.min,t("rl")+": "+s.rev,"",t("close"));return a.join("\n")}
+function dl(){const u=URL.createObjectURL(new Blob([summary()],{type:"text/plain;charset=utf-8"})),a=el("a");a.href=u;a.download="my-creative-lifestyle-path.txt";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
+function go(n){if(step===2&&n===3&&(s.focus.length<1||s.focus.length>3)){$("clp-err").textContent=t("ferr");return}step=n;render()}
+function render(){
+$("clp").lang=L;["title","intro","note","priv"].forEach(k=>$("clp-"+k).textContent=t(k));$("clp-err").textContent="";
+const app=$("clp-app");app.replaceChildren();
+if(step<5){const p=document.createElement("progress");p.max=4;p.value=step;app.append(p)}
+const box=el("section");app.append(box);
+if(step===1){box.append(el("h3",t("one")),el("p",t("scale")));field(box,t("name"),s.name,v=>s.name=v);
+D.forEach((d,i)=>{const l=el("label",ti(i));l.htmlFor="clp-sc"+i;const n=el("select");n.id=l.htmlFor;["",1,2,3,4,5].forEach(v=>{const o=el("option",v===""?t("skip"):String(v));o.value=v;n.append(o)});n.value=s.sc[i];n.onchange=()=>s.sc[i]=n.value;box.append(l,n)})}
+if(step===2){box.append(el("h3",t("two")),el("p",t("choose")));D.forEach((d,i)=>check(box,ti(i),s.focus.includes(i),on=>{s.focus=s.focus.filter(v=>v!==i);if(on)s.focus.push(i)}))}
+if(step===3){box.append(el("h3",t("three")),el("p",t("prac")));s.focus.forEach(i=>{const f=el("fieldset");f.append(el("legend",ti(i)));pr(i).forEach((p,j)=>check(f,p,(s.ch[i]||[]).includes(j),on=>{s.ch[i]=(s.ch[i]||[]).filter(v=>v!==j);if(on)s.ch[i].push(j)}));field(f,t("own"),s.own[i],v=>s.own[i]=v,true);field(f,t("rhythm"),s.rh[i],v=>s.rh[i]=v);field(f,t("support"),s.sup[i],v=>s.sup[i]=v,true);box.append(f)})}
+if(step===4){box.append(el("h3",t("four")));field(box,t("notice"),s.notice,v=>s.notice=v,true);field(box,t("min"),s.min,v=>s.min=v,true);field(box,t("rev"),s.rev,v=>s.rev=v,false,"date")}
+if(step<5){const nav=el("div",undefined,"noprint");if(step>1)nav.append(btn(t("back"),()=>go(step-1),true));nav.append(btn(step===4?t("gen"):t("next"),()=>go(step+1)));app.append(nav)}
+else{box.append(el("h3",t("res")));if(s.name)box.append(el("p",s.name));
+s.focus.forEach(i=>{box.append(el("h3",ti(i)),el("p",t("rating")+": "+(s.sc[i]?s.sc[i]+"/5":t("unr")),"muted"));const ul=el("ul");let p=(s.ch[i]||[]).map(j=>pr(i)[j]);if(s.own[i])p.push(s.own[i]);(p.length?p:[t("none")]).forEach(x=>ul.append(el("li",x)));box.append(ul);if(s.rh[i])box.append(el("p",t("rhythm")+": "+s.rh[i]));if(s.sup[i])box.append(el("p",t("sup")+": "+s.sup[i]))});
+[["nl",s.notice],["ml",s.min],["rl",s.rev]].forEach(([k,v])=>{if(v)box.append(el("h3",t(k)),el("p",v))});
+box.append(el("p",t("close")));const nav=el("div",undefined,"noprint");nav.append(btn(t("edit"),()=>go(1),true),btn(t("txt"),dl),btn(t("print"),()=>window.print()));app.append(nav)}
+}
+$("clp-lang").onchange=e=>{L=e.target.value;render()};
+render();
+})();
+</script>
+</div>
+<div class="foot"><a href="https://economiacreativa.wordpress.com/creative-lifestyle/">Creative Lifestyle project</a> · <a href="https://economiacreativa.wordpress.com/2026/06/18/what-makes-us-notice/">What Makes Us Notice?</a></div>
+</body></html>
